@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+    <!-- Render requested single post here, proabably take argument in app.js -->
+    <section>
+        <% if (posts) { %>
+                <div class="post">
+                    <!-- Post header: avatar + timestamp -->
+                      <div class="post_header">
+                      <img src="/avatar_user_1.jpg" class="avatar" alt="User avatar">
+                      <p> <%= posts.date %> </p>
+                      </div>
+                    <!-- Post image (if any)-->
+                    <% if (posts.photourl) { %>
+                      <div class="post_photo">
+                      <img src="<%= posts.photourl.substr(6) %>" class="photo" alt="Post's image">
+                      </div>
+                      <% } %>
+                    <!-- Post content -->
+                      <p><%= posts.text %></p>
+                    <!-- Post footer, likes and their counts (TODO) -->
+                      <div class="post_footer">
+                        <a class="delete" data-del="<%= posts.id %>">Delete</a>
+                      </div>
+                </div>
+            <% } else { %>
+            <section>
+              <h1>No such post!</h1>
+            </section>            
+            <% } %>
+            </div>
+        </section>
+        <script>
+          const delreq = document.querySelector('a.delete');
+          delreq.addEventListener('click', (e) => {
+          const endpoint = `/posts/${delreq.dataset.del}`;
+          fetch(endpoint, {
+          method: 'DELETE',
+          }).then(window.location.href = '/posts')
+          });
+          </script>
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>
