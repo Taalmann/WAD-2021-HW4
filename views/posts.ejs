@@ -11,10 +11,11 @@
     <section>
     <% if (posts.length > 0) { %>
         <% posts.forEach(post => { %>
+          <a href="/singlepost/<%= post.id %>">
             <div class="post">
                 <!-- Post header: avatar + timestamp -->
                   <div class="post_header">
-                  <img src="avatar_user_1.jpg" class="avatar" alt="User avatar">
+                  <img src="/avatar_user_1.jpg" class="avatar" alt="User avatar">
                   <p> <%= post.date %> </p>
                   </div>
                 <!-- Post image (if any)-->
@@ -27,8 +28,9 @@
                   <p><%= post.text %></p>
                 <!-- Post footer, likes and their counts (TODO) -->
                   <div class="post_footer">
-                  <button><img src="/thumb_up.png" class="thumb_up" alt="Thumb up"></button>
-                  <p like> 0 </p>
+                  </a>
+                  <button onclick="getElementById('like_count_id_<%= post.id %>').innerHTML = parseInt(getElementById('like_count_id_<%= post.id %>').innerHTML, 10) + 1; this.style.visibility = 'hidden'"><img src="/thumb_up.png" class="thumb_up" alt="Thumb up"></button>
+                  <p id="like_count_id_<%= post.id %>">0</p>
                   </div>
             </div>
         <% }) %>

@@ -16,9 +16,17 @@ app.listen(3000, () => {
  console.log("Server is listening to port 3000")
 });
 
-app.get('/', (req, res) => {
- res.render('index');
-});
+app.get('/', async(req, res) => {
+    try {
+    console.log("get posts request has arrived");
+    const posts = await pool.query(
+    "SELECT * FROM post"
+    );
+    res.render('posts', { posts: posts.rows });
+    } catch (err) {
+    console.error(err.message);
+    }
+   });
 
 app.get('/posts', async(req, res) => {
  try {
