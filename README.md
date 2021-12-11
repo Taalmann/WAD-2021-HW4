@@ -1,5 +1,7 @@
 # WAD-2021-HW4
 
+## Database info
+
 Database's name is hw4
 Password: postgresql
 Dump file: hw4.sql
