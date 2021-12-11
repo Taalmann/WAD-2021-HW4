@@ -79,7 +79,7 @@ try {
 const post = req.body;
 console.log(post);
 const newpost = await pool.query(
-"INSERT INTO post(date, title, text, photourl) values ($1, $2, $3, $4) RETURNING*", [post.date, post.title, post.text, post.photourl]
+"INSERT INTO post(title, text, photourl) values ($1, $2, $3) RETURNING*", [post.title, post.text, post.photourl]
 );
 res.redirect('posts');
 } catch (err) {

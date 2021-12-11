@@ -159,3 +159,19 @@ footer {
   text-align: center;
   background-color: #fff;
 }
+
+/* Add a new post section */
+section div.add_post_container{
+      
+  display: flex;
+  justify-content: center; /*horizontal*/
+  align-items: center; /*vertical*/
+  min-height: 100vh; 
+  
+}
+
+section div.post_fields{
+  padding: 30px 10px 30px 10px;
+  text-align: center;
+    
+}
