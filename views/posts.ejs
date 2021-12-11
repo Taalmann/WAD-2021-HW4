@@ -4,30 +4,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
-    <title>Posts</title>
+    <title>Document</title>
 </head>
 <body>
     <%- include('./partials/header.ejs') %>
-
-    <!-- Code to render posts from DB -->
-
-    <div class="post">
-        <% if (posts.length > 0) { %>
+    <section>
+    <% if (posts.length > 0) { %>
         <% posts.forEach(post => { %>
-        <a class="singlepost" href="/singlepost/<%= post.id %>">
-        <h3 class="title">
-        <%= post.title %>
-        </h3>
-        <p class="body">
-        <%= post.body %>
-        </p>
-        </a>
+            <div class="post">
+                <!-- Post header: avatar + timestamp -->
+                  <div class="post_header">
+                  <img src="avatar_user_1.jpg" class="avatar" alt="User avatar">
+                  <p> <%= post.date %> </p>
+                  </div>
+                <!-- Post image (if any)-->
+                <% if (post.photourl) { %>
+                  <div class="post_photo">
+                  <img src="<%= post.photourl.substr(6) %>" class="photo" alt="Post's image">
+                  </div>
+                  <% } %>
+                <!-- Post content -->
+                  <p><%= post.text %></p>
+                <!-- Post footer, likes and their counts (TODO) -->
+                  <div class="post_footer">
+                  <button><img src="/thumb_up.png" class="thumb_up" alt="Thumb up"></button>
+                  <p like> 0 </p>
+                  </div>
+            </div>
         <% }) %>
         <% } else { %>
         <p>You did not post anything...</p>
         <% } %>
         </div>
-       
+    </section>
     
     <%- include('./partials/footer.ejs') %>
 </body>
