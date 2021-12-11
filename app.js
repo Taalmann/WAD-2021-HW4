@@ -24,7 +24,7 @@ app.get('/posts', async(req, res) => {
  try {
  console.log("get posts request has arrived");
  const posts = await pool.query(
- "SELECT * FROM nodetable"
+ "SELECT * FROM post"
  );
  res.render('posts', { posts: posts.rows });
  } catch (err) {
@@ -38,7 +38,7 @@ app.get('/singlepost/:id', async(req, res) => {
  console.log(req.params.id);
  console.log("get a single post request has arrived");
  const posts = await pool.query(
- "SELECT * FROM nodetable WHERE id = $1", [id]
+ "SELECT * FROM post WHERE id = $1", [id]
  );
  res.render('singlepost', { posts: posts.rows[0] });
  } catch (err) {
@@ -51,7 +51,7 @@ app.get('/posts/:id', async(req, res) => {
  const { id } = req.params;
  console.log("get a post request has arrived");
  const Apost = await pool.query(
- "SELECT * FROM nodetable WHERE id = $1", [id]
+ "SELECT * FROM post WHERE id = $1", [id]
  );
  res.json(Apost.rows[0]);
  } catch (err) {
@@ -66,7 +66,7 @@ const { id } = req.params;
 const post = req.body;
 console.log("delete a post request has arrived");
 const deletepost = await pool.query(
-"DELETE FROM nodetable WHERE id = $1", [id]
+"DELETE FROM post WHERE id = $1", [id]
 );
 res.redirect('posts');
 } catch (err) {
@@ -79,7 +79,7 @@ try {
 const post = req.body;
 console.log(post);
 const newpost = await pool.query(
-"INSERT INTO nodetable(title, body, urllink) values ($1, $2, $3) RETURNING*", [post.title, post.body, post.urllink]
+"INSERT INTO post(date, title, text, photourl) values ($1, $2, $3, $4) RETURNING*", [post.date, post.title, post.text, post.photourl]
 );
 res.redirect('posts');
 } catch (err) {

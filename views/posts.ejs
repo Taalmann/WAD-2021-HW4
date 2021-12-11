@@ -9,7 +9,25 @@
 <body>
     <%- include('./partials/header.ejs') %>
 
-    <!-- Add code to render posts from DB here  -->
+    <!-- Code to render posts from DB -->
+
+    <div class="post">
+        <% if (posts.length > 0) { %>
+        <% posts.forEach(post => { %>
+        <a class="singlepost" href="/singlepost/<%= post.id %>">
+        <h3 class="title">
+        <%= post.title %>
+        </h3>
+        <p class="body">
+        <%= post.body %>
+        </p>
+        </a>
+        <% }) %>
+        <% } else { %>
+        <p>You did not post anything...</p>
+        <% } %>
+        </div>
+       
     
     <%- include('./partials/footer.ejs') %>
 </body>
