@@ -10,3 +10,9 @@ CREATE DATABASE hw4;
 
 Or one can run (ie copy-paste the code) in pgAdmin Query editor 1) create_db.sql 2)create_table.sql 3) insert_data.sql
 
+## Launching node server
+
+    $ npm install
+    $ nodemon app
+
+view on localhost:3000
