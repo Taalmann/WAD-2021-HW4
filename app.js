@@ -85,9 +85,15 @@ console.error(err.message);
 app.post('/posts', async(req, res) => {
 try {
 const post = req.body;
+let date = getDateFunction();
+let photourl = '';
+let userid = 1;
+const IDS = await pool.query("SELECT MAX(id) FROM post");
+console.log(IDS.rows[0].max);
+id = IDS.rows[0].max+1
 console.log(post);
 const newpost = await pool.query(
-"INSERT INTO post(title, text, photourl) values ($1, $2, $3) RETURNING*", [post.title, post.text, post.photourl]
+"INSERT INTO post(title, text, photourl, date, id, userid) values ($1, $2, $3, $4, $5, $6) RETURNING*", [post.title, post.text, post.photourl, post.date, post.id, post.userid]
 );
 res.redirect('posts');
 } catch (err) {
