@@ -85,7 +85,9 @@ console.error(err.message);
 app.post('/posts', async(req, res) => {
 try {
 const post = req.body;
-let date = getDateFunction();
+let currentDate = new Date();
+let month_names_short =  ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+let date = month_names_short[currentDate.getMonth()] + " " + currentDate.getDay() + "," + currentDate.getYear() + " "+ currentDate.getHours() +" :" + currentDate.getSeconds();
 let photourl = '';
 let userid = 1;
 const IDS = await pool.query("SELECT MAX(id) FROM post");
@@ -93,7 +95,7 @@ console.log(IDS.rows[0].max);
 id = IDS.rows[0].max+1
 console.log(post);
 const newpost = await pool.query(
-"INSERT INTO post(title, text, photourl, date, id, userid) values ($1, $2, $3, $4, $5, $6) RETURNING*", [post.title, post.text, post.photourl, post.date, post.id, post.userid]
+"INSERT INTO post(title, text, photourl, date, id, userid) values ($1, $2, $3, $4, $5, $6) RETURNING*", [post.title, post.text, post.photourl, date, id, userid]
 );
 res.redirect('posts');
 } catch (err) {
