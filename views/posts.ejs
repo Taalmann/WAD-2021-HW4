@@ -37,7 +37,7 @@
             </div>
             <script>
               document.querySelector('button.like_butt_id_<%= post.id %>').addEventListener('click', (e) => {
-                fetch("/posts/<%= post.id %>", { method: 'PUT'});
+                fetch(`/posts/<%= post.id %>`, { method: 'PUT'});
                 document.querySelector('p.like_count_id_<%= post.id %>').innerHTML = parseInt(document.querySelector('p.like_count_id_<%= post.id %>').innerHTML, 10) + 1;
                 document.querySelector('button.like_butt_id_<%= post.id %>').style.visibilty = 'hidden';
             }, { once: true });
@@ -45,7 +45,7 @@
         <% }) %>
         <% } else { %>
         <p>You did not post anything...</p>
-        <% } %>
+        <% } %> 
         </div>
     </section>
     

@@ -20,7 +20,7 @@ app.get('/', async(req, res) => {
     try {
     console.log("get posts request has arrived");
     const posts = await pool.query(
-    "SELECT * FROM post"
+        "SELECT * FROM post ORDER BY id DESC"
     );
     res.render('posts', { posts: posts.rows });
     } catch (err) {
@@ -32,7 +32,7 @@ app.get('/posts', async(req, res) => {
  try {
  console.log("get posts request has arrived");
  const posts = await pool.query(
- "SELECT * FROM post"
+ "SELECT * FROM post ORDER BY id DESC"
  );
  res.render('posts', { posts: posts.rows });
  } catch (err) {
