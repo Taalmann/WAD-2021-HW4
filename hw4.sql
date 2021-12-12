@@ -30,7 +30,8 @@ CREATE TABLE public.post (
     date character varying NOT NULL,
     title character varying NOT NULL,
     text character varying NOT NULL,
-    photourl character varying NOT NULL
+    photourl character varying NOT NULL,
+    likenr integer DEFAULT 0
 );
 
 
@@ -40,17 +41,17 @@ ALTER TABLE public.post OWNER TO postgres;
 -- Data for Name: post; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.post (id, userid, date, title, text, photourl) FROM stdin;
-1	1	Aug 19,2021 15:00	Hiiumaa	Dagö... the second largest island in Estonia	
-2	1	Aug 19,2021 15:30	Kassari	Sääretirp...	public/kassari_sääretirp.jpg
-3	1	Aug 19,2021 15:59	Kassari	Alvars...where see and land meet...	public/kassari_2.jpg
-4	1	Aug 19,2021 15:59	Kassari	Alvars...	public/kassari.jpg
-5	1	Aug 20,2021 11:00	Suuremõisa	Grossenhof...and legendary Otto Reinhold Ludvig von Ungern-Sternberg...	public/suuremõisa.jpg
-6	1	Aug 21,2021 12:00	Baltic Lights	Kõpu...	public/kõpu_tuletorn.jpg
-7	1	Aug 21,2021 17:08	Baltic Lights	Tahkuna...	public/tahkuna_tuletorn.jpg
-8	1	Aug 22,2021 11:00	Tahkuna Nature Reserve	Vanajõgi...	public/vanajõgi.jpg
-9	1	Aug 22,2021 13:00	Tahkuna Nature Reserve	Tihu looduskaitseala...	public/tihu_looduskaitseala.jpg
-10	1	Aug 23,2021 22:15	Luidja	Hiiumaa... an island surrounded by see... see, a giver and a taker...	public/luidja.jpg
+COPY public.post (id, userid, date, title, text, photourl, likenr) FROM stdin;
+1	1	Aug 19,2021 15:00	Hiiumaa	Dagö... the second largest island in Estonia		\N
+2	1	Aug 19,2021 15:30	Kassari	Sääretirp...	public/kassari_sääretirp.jpg	\N
+3	1	Aug 19,2021 15:59	Kassari	Alvars...where see and land meet...	public/kassari_2.jpg	\N
+4	1	Aug 19,2021 15:59	Kassari	Alvars...	public/kassari.jpg	\N
+5	1	Aug 20,2021 11:00	Suuremõisa	Grossenhof...and legendary Otto Reinhold Ludvig von Ungern-Sternberg...	public/suuremõisa.jpg	\N
+6	1	Aug 21,2021 12:00	Baltic Lights	Kõpu...	public/kõpu_tuletorn.jpg	\N
+7	1	Aug 21,2021 17:08	Baltic Lights	Tahkuna...	public/tahkuna_tuletorn.jpg	\N
+8	1	Aug 22,2021 11:00	Tahkuna Nature Reserve	Vanajõgi...	public/vanajõgi.jpg	\N
+9	1	Aug 22,2021 13:00	Tahkuna Nature Reserve	Tihu looduskaitseala...	public/tihu_looduskaitseala.jpg	\N
+10	1	Aug 23,2021 22:15	Luidja	Hiiumaa... an island surrounded by see... see, a giver and a taker...	public/luidja.jpg	\N
 \.
 
 

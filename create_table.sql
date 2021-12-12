@@ -6,6 +6,7 @@ CREATE TABLE public.post
     title character varying NOT NULL,
     text character varying NOT NULL,
     photourl character varying NOT NULL,
+    likenr integer DEFAULT 0,
     PRIMARY KEY (id)
 );
 
