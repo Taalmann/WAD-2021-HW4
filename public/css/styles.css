@@ -223,4 +223,5 @@ h3 {
 
 .delete {
   cursor: pointer;
+  margin-left: -100px;
 }

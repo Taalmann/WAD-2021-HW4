@@ -82,6 +82,21 @@ console.error(err.message);
 }
 });
 
+app.put('/posts/:id', async(req, res) => {
+    try {
+    const { id } = req.params;
+    console.log("update request has arrived");
+    console.log("post id: ", id)
+    const updatepost = await pool.query(
+        "UPDATE post SET likenr = likenr + 1 WHERE id = $1;", [id]
+    );
+    res.redirect('posts');
+    } catch (err) {
+    console.error(err.message);
+    }
+});
+   
+
 app.post('/posts', async(req, res) => {
 try {
 const post = req.body;
@@ -114,3 +129,4 @@ res.render('create');
 app.use((req, res) => {
 res.status(404).render('404');
 }); 
+

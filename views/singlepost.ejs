@@ -28,6 +28,8 @@
                       <p><%= posts.text %></p>
                     <!-- Post footer, likes and their counts (TODO) -->
                       <div class="post_footer">
+                        <button class="like_butt_id_<%= posts.id %>" ><img src="/thumb_up.png" class="thumb_up" alt="Thumb up"></button>
+                         <p class="like_count_id_<%= posts.id %>"><%= posts.likenr %></p> <br>
                         <a class="delete" data-del="<%= posts.id %>">Delete</a>
                       </div>
                 </div>
@@ -46,6 +48,12 @@
           method: 'DELETE',
           }).then(window.location.href = '/posts')
           });
+
+          document.querySelector('button.like_butt_id_<%= posts.id %>').addEventListener('click', (e) => {
+                fetch("/posts/<%= posts.id %>", { method: 'PUT'});
+                document.querySelector('p.like_count_id_<%= posts.id %>').innerHTML = parseInt(document.querySelector('p.like_count_id_<%= posts.id %>').innerHTML, 10) + 1;
+                document.querySelector('button.like_butt_id_<%= posts.id %>').style.visibilty = 'hidden';
+            }, { once: true });
           </script>
     <%- include('./partials/footer.ejs') %>
 </body>

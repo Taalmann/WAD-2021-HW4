@@ -10,7 +10,7 @@
     <%- include('./partials/header.ejs') %>
     <section>
     <% if (posts.length > 0) { %>
-        <% posts.forEach(post => { %>
+        <% posts.forEach( post => { %>
           <a href="/singlepost/<%= post.id %>">
             <div class="post">
                 <!-- Post header: avatar + timestamp -->
@@ -30,10 +30,18 @@
                 <!-- Post footer, likes and their counts (TODO) -->
                   <div class="post_footer">
                   </a>
-                  <button onclick="getElementById('like_count_id_<%= post.id %>').innerHTML = parseInt(getElementById('like_count_id_<%= post.id %>').innerHTML, 10) + 1; this.style.visibility = 'hidden'"><img src="/thumb_up.png" class="thumb_up" alt="Thumb up"></button>
-                  <p id="like_count_id_<%= post.id %>">0</p>
+                  <!-- onclick="getElementById('like_count_id_<%= post.id %>').innerHTML = parseInt(getElementById('like_count_id_<%= post.id %>').innerHTML, 10) + 1; this.style.visibility = 'hidden'" -->
+                  <button class="like_butt_id_<%= post.id %>" ><img src="/thumb_up.png" class="thumb_up" alt="Thumb up"></button>
+                  <p class="like_count_id_<%= post.id %>"><%= post.likenr %></p>
                   </div>
             </div>
+            <script>
+              document.querySelector('button.like_butt_id_<%= post.id %>').addEventListener('click', (e) => {
+                fetch("/posts/<%= post.id %>", { method: 'PUT'});
+                document.querySelector('p.like_count_id_<%= post.id %>').innerHTML = parseInt(document.querySelector('p.like_count_id_<%= post.id %>').innerHTML, 10) + 1;
+                document.querySelector('button.like_butt_id_<%= post.id %>').style.visibilty = 'hidden';
+            }, { once: true });
+              </script>
         <% }) %>
         <% } else { %>
         <p>You did not post anything...</p>
