@@ -87,7 +87,11 @@ try {
 const post = req.body;
 let currentDate = new Date();
 let month_names_short =  ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-let date = month_names_short[currentDate.getMonth()] + " " + currentDate.getDay() + "," + currentDate.getYear() + " "+ currentDate.getHours() +" :" + currentDate.getSeconds();
+let seconds = currentDate.getSeconds()
+if (seconds < 10) {seconds = "0"+seconds;}
+let hours = currentDate.getHours()
+if (hours < 10) {hours = "0"+hours;}
+let date = month_names_short[currentDate.getMonth()] + " " + currentDate.getDate() + "," + currentDate.getFullYear() + " "+ hours +":" + seconds;
 let photourl = '';
 let userid = 1;
 const IDS = await pool.query("SELECT MAX(id) FROM post");
