@@ -16,7 +16,7 @@
                 <!-- Post header: avatar + timestamp -->
                   <div class="post_header">
                   <img src="/avatar_user_1.jpg" class="avatar" alt="User avatar">
-                  <p> <%= post.date %> </p>
+                  <p> <%= post.date %> </p> 
                   </div>
                 <!-- Post image (if any)-->
                 <% if (post.photourl) { %>
@@ -25,6 +25,7 @@
                   </div>
                   <% } %>
                 <!-- Post content -->
+                <h3> <%= post.title %> </h3> <br>
                   <p><%= post.text %></p>
                 <!-- Post footer, likes and their counts (TODO) -->
                   <div class="post_footer">
